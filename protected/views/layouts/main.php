@@ -16,6 +16,10 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	
+	<!-- google+ sign in button config -->
+	<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+	
 </head>
 
 <body>
