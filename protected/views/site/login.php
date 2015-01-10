@@ -9,9 +9,10 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<h1>Login</h1>
 
-<p>Please fill out the following form with your login credentials:</p>
+<h1>Start</h1>
+
+<!-- <p>Please fill out the following form with your login credentials:</p> -->
 
 <span id="signinButton">
     <span
@@ -28,6 +29,10 @@ $this->breadcrumbs = array(
         https://www.googleapis.com/auth/calendar.readonly">
     </span>
 </span>
+
+<br />
+<br />
+<br />
 
 <script type="text/javascript">
     function signinCallback(authResult) {
@@ -95,4 +100,4 @@ $this->breadcrumbs = array(
     </div>
 
 <?php $this->endWidget(); ?>
-</div><!-- form -->
+</div>
