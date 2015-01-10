@@ -88,21 +88,16 @@
                     'links' => $this->breadcrumbs,
                 ));
                 ?><!-- breadcrumbs -->
-<?php endif ?>
+            <?php endif ?>
 
-<?php echo $content; ?>
+            <?php echo $content; ?>
 
             <div class="clear"></div>
 
             <div id="footer">
-                <<<<<<< HEAD
-                Copyright &copy; <?php echo date('Y'); ?> by HopScotch.<br/>
-                All Rights Reserved.<br/>
-                =======
                                 <!-- Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/> -->
                 <!-- All Rights Reserved.<br/> -->
-                >>>>>>> 75abf71083c4c560ec315b7f914f967cfa85d57f
-<?php echo Yii::powered(); ?>
+                <?php echo Yii::powered(); ?>
             </div><!-- footer -->
 
         </div><!-- page -->
