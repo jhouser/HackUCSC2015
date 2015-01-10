@@ -10,13 +10,15 @@ Communicating with main repository
     
     git merge upstream/master
     # Merges any changes fetched into your working files
-
+	
     git push upstream master
     # Pushes commits to your remote repository stored on GitHub
-
+	
     pull = fetch and merge
-
+	
     https://github.com/jhouser/HackUCSC2015
+	
+	cannot pull/fetch without commiting
 	
 	
 Using Branches to test ideas 
