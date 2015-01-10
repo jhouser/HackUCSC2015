@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<<<<<<< HEAD
 <style>	
 .button
 {
@@ -45,6 +46,11 @@
 }
 </style>
 	
+=======
+	
+	<!-- google+ sign in button config -->
+	<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+>>>>>>> 75abf71083c4c560ec315b7f914f967cfa85d57f
 	
 </head>
 
@@ -62,7 +68,7 @@
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>'Invite', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
@@ -89,8 +95,13 @@
 	<div class="clear"></div>
 
 	<div id="footer">
+<<<<<<< HEAD
 		Copyright &copy; <?php echo date('Y'); ?> by HopScotch.<br/>
 		All Rights Reserved.<br/>
+=======
+		<!-- Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/> -->
+		<!-- All Rights Reserved.<br/> -->
+>>>>>>> 75abf71083c4c560ec315b7f914f967cfa85d57f
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
 

@@ -401,6 +401,9 @@ class Google_Auth_OAuth2 extends Google_Auth_Abstract
    */
   public function isAccessTokenExpired()
   {
+    if(!isset($this->token['created']) && isset($this->token['issued_at'])){
+        $this->token['created'] = $this->token['issued_at'];
+    }
     if (!$this->token || !isset($this->token['created'])) {
       return true;
     }
