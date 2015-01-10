@@ -4,7 +4,8 @@ VALUES
 (2, 'food'),
 (3, 'concert'),
 (4, 'volunteer'),
-(5, 'comedy');
+(5, 'comedy')
+(6, 'sports');
 
 -- Sample Events Table
 
@@ -17,6 +18,8 @@ VALUES
 ('2-for-1 Pizza', 'Lunch deal at Tidal Pizza', 2, 10, 1421064000, 1421071200),
 -- 8 - 10:45pm
 ('Bluegrass Concert', 'The Fiddle Sticks playing at The Ole Watering Hole', 3, 15, 1421092800, 1421059500),
+-- 7:45 - 10
+('Baseball Game', 'Giants vs Rockies at AT&T Park', 6, 35, 1421091900, 1421102700),
 -- Tuesday
 -- 8 - 12 am
 ('Beach Clean-up', 'Come help keep our beaches clean!', 4, 0, 1421136000, 1421150400),
