@@ -56,7 +56,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 `id` int(11) NOT NULL,
   `fullName` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `maxBudget` int(11) DEFAULT NULL
+  `maxBudget` int(11) DEFAULT NULL,
+  `refreshToken` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
