@@ -21,11 +21,12 @@
 .button
 {
 	
-	border-radius: 5px;
+	border-radius: 25px;
+	padding: 0px 0px;
 	border: 2px solid #6495ED;
 	background-color: #BCD2EE;
 	height: 50px;
-	width: 120px;
+	width: 150px;
 	margin: auto;
 	text-align: center;
 
@@ -36,6 +37,7 @@
 	text-decoration: none;
 	color: #3D59AB;
 	font-family: Verdana, sans-serif;
+	font-size: 200%;
 }
 
 .buttonfont2 
@@ -43,6 +45,42 @@
 	font-weight: bold;
 	font-size: 18px;
 	color: #ffffff;
+}
+
+.round-button {
+	width:10%;
+}
+.round-button-circle {
+	width: 100%;
+	height:0;
+	padding-bottom: 100%;
+    border-radius: 50%;
+	border:10px solid #cfdcec;
+    overflow:hidden;
+    
+    background: #3b5998;
+	<!--#4679BD;--> 
+    box-shadow: 0 0 3px gray;
+}
+.round-button-circle:hover {
+	background: #FF0000;
+	<!--#30588e;-->
+}
+.round-button a {
+    display:block;
+	float:left;
+	width:100%;
+	padding-top:50%;
+    padding-bottom:50%;
+	line-height:1em;
+	margin-top:-0.5em;
+    
+	text-align:center;
+	color:#e2eaf3;
+    font-family:Verdana;
+    font-size:1.2em;
+    font-weight:bold;
+    text-decoration:none;
 }
 </style>
 	
@@ -76,11 +114,14 @@
 	</div><!-- mainmenu -->
 
 	<br></br>
-	<p class= "button">Hello World!
-		<a href="https://www.facebook.com">Facebook
-			<a style= "color:green">Facebook</a>
+	<p class= "button">
+		<a href="https://www.facebook.com" class= "buttonfont1">Facebook
+	
 		</a>
 	</p>
+	
+	<div class="round-button"><div class="round-button-circle"><a href="https://facebook.com" class="round-button">Facebook</a></div></div>
+	
 
 	
 	
