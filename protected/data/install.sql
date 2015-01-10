@@ -20,6 +20,7 @@
 DROP TABLE IF EXISTS `user_type_preferences`;
 DROP TABLE IF EXISTS `user_busy_times`;
 DROP TABLE IF EXISTS `user_friend`;
+DROP TABLE IF EXISTS `user_event`;
 DROP TABLE IF EXISTS `events`;
 DROP TABLE IF EXISTS `event_types`;
 DROP TABLE IF EXISTS `users`;
@@ -28,11 +29,12 @@ CREATE TABLE IF NOT EXISTS `events` (
 `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text,
-  `typeId` int(11) NOT NULL,
+  `typeId` int(11) DEFAULT NULL,
   `cost` int(11) DEFAULT NULL,
-  `googleCalendarId` int(11) DEFAULT NULL,
+  `googleCalendarId` VARCHAR(255) DEFAULT NULL,
   `startTime` bigint(20) DEFAULT NULL,
-  `endTime` bigint(20) DEFAULT NULL
+  `endTime` bigint(20) DEFAULT NULL,
+  `isUserEvent` tinyint(4) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -60,6 +62,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `refreshToken` varchar(255) DEFAULT NULL,
   `picture` TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_event`
+--
+
+CREATE TABLE IF NOT EXISTS `user_event` (
+`id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `eventId` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -173,6 +187,15 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `user_type_preferences`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Indexes for table `user_event`
+--
+ALTER TABLE `user_event`
+ ADD PRIMARY KEY (`id`), ADD KEY `userId` (`userId`,`eventId`), ADD KEY `eventId` (`eventId`);
+
+ALTER TABLE `user_event`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -203,3 +226,9 @@ ALTER TABLE `user_type_preferences`
 ADD CONSTRAINT `user_type_preferences_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `user_type_preferences_ibfk_2` FOREIGN KEY (`typeId`) REFERENCES `event_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Constraints for table `user_event`
+--
+ALTER TABLE `user_event`
+ADD CONSTRAINT `user_event_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `user_event_ibfk_2` FOREIGN KEY (`eventId`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

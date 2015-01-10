@@ -12,10 +12,22 @@ class WebUser extends CWebUser {
             return $this->name;
         }
     }
+    
+    public function getId(){
+        $user = $this->loadUser($this->getName());
+        return $user->id;
+    }
 
     public function getPicture() {
         $user = $this->loadUser($this->getName());
         return $user->picture;
+    }
+    
+    public function getAvailability(){
+        $user = $this->loadUser($this->getName());
+        $busyTimes = $user->userBusyTimes;
+        printR($busyTimes,true);
+        exit;
     }
 
     protected function loadUser($email = null) {

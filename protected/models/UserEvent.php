@@ -1,30 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "events".
+ * This is the model class for table "user_event".
  *
- * The followings are the available columns in table 'events':
+ * The followings are the available columns in table 'user_event':
  * @property integer $id
- * @property string $title
- * @property string $description
- * @property integer $typeId
- * @property integer $cost
- * @property string $googleCalendarId
- * @property string $startTime
- * @property string $endTime
- * @property integer $isUserEvent
- *
- * The followings are the available model relations:
- * @property EventTypes $type
+ * @property integer $userId
+ * @property integer $eventId
  */
-class Event extends CActiveRecord
+class UserEvent extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'events';
+		return 'user_event';
 	}
 
 	/**
@@ -35,14 +26,11 @@ class Event extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title', 'required'),
-			array('typeId, cost, isUserEvent', 'numerical', 'integerOnly'=>true),
-			array('title, googleCalendarId', 'length', 'max'=>255),
-			array('startTime, endTime', 'length', 'max'=>20),
-			array('description', 'safe'),
+			array('userId, eventId', 'required'),
+			array('userId, eventId', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, description, typeId, cost, googleCalendarId, startTime, endTime, isUserEvent', 'safe', 'on'=>'search'),
+			array('id, userId, eventId', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +42,6 @@ class Event extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'type' => array(self::BELONGS_TO, 'EventTypes', 'typeId'),
 		);
 	}
 
@@ -65,14 +52,8 @@ class Event extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Title',
-			'description' => 'Description',
-			'typeId' => 'Type',
-			'cost' => 'Cost',
-			'googleCalendarId' => 'Google Calendar',
-			'startTime' => 'Start Time',
-			'endTime' => 'End Time',
-			'isUserEvent' => 'Is User Event',
+			'userId' => 'User',
+			'eventId' => 'Event',
 		);
 	}
 
@@ -95,14 +76,8 @@ class Event extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('typeId',$this->typeId);
-		$criteria->compare('cost',$this->cost);
-		$criteria->compare('googleCalendarId',$this->googleCalendarId,true);
-		$criteria->compare('startTime',$this->startTime,true);
-		$criteria->compare('endTime',$this->endTime,true);
-		$criteria->compare('isUserEvent',$this->isUserEvent);
+		$criteria->compare('userId',$this->userId);
+		$criteria->compare('eventId',$this->eventId);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -113,7 +88,7 @@ class Event extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Event the static model class
+	 * @return UserEvent the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
