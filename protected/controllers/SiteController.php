@@ -82,17 +82,22 @@ class SiteController extends Controller {
             $authResult = json_encode($_POST['authResult']);
             $client = new Google_Client();
             $client->setAccessToken($authResult);
-            $user = new Google_Service_Oauth2($client);
-            $userInfo = $user->userinfo->get();
+            $userService = new Google_Service_Oauth2($client);
+            $userInfo = $userService->userinfo->get();
             $name = $userInfo->name;
             $email = $userInfo->email;
+            $picture = $userInfo->picture;
             $user = User::model()->findByAttributes(array('email' => $email));
             if (isset($user)) {
-                
+                if($picture != $user->picture){
+                    $user->picture = $picture;
+                    $user->update(array('picture'));
+                }
             } else {
                 $user = new User();
                 $user->fullName = $name;
                 $user->email = $email;
+                $user->picture = $picture;
                 $user->save();
             }
             $identity = new UserIdentity($email, '');
