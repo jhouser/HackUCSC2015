@@ -32,5 +32,7 @@ VALUES
 -- 12 - 3pm
 ('Sale on Bananas', 'A-PEEL-ING Fruit store', 2, 0, 1421236800, 1421247600),
 -- 2 - 7pm
-('Art and Wine Festival', 'Booze and peruse on main street', 2, 0, 1421244000, 1421262000);  
+('Art and Wine Festival', 'Booze and peruse on main street', 2, 0, 1421244000, 1421262000),
+-- 6:30 - 9pm
+('Comedy Night', 'Open Mike at Jakes Comedy Club', 5, 12, 1421260200, 1421269200);  
 
