@@ -1,0 +1,44 @@
+git commands
+
+Communicating with main repository
+
+    git fetch upstream
+    # Pulls in changes not present in your local repository, without modifying your files
+
+    git commit -a
+    # commit all changes to your files before merging (-a is for add)
+    
+    git merge upstream/master
+    # Merges any changes fetched into your working files
+
+    git push upstream master
+    # Pushes commits to your remote repository stored on GitHub
+
+    pull = fetch and merge
+
+    https://github.com/jhouser/HackUCSC2015
+	
+	
+Using Branches to test ideas 
+    
+    to create a new branch:
+    
+    git checkout -b mybranch
+    # Creates a new branch called "mybranch" and makes it the active branch
+    
+    
+    to switch between branches:
+    
+    git checkout master
+    # Makes "master" the active branch
+    git checkout mybranch
+    # Makes "mybranch" the active branch
+    
+    
+    Once you are ready to use the changes made in the branch:
+    
+    git checkout master    # Makes "master" the active branch
+    git merge mybranch
+    # Merges the commits from "mybranch" into "master"
+    git branch -d mybranch
+    # Deletes the "mybranch" branch
