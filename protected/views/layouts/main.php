@@ -16,6 +16,36 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<style>	
+.button
+{
+	
+	border-radius: 5px;
+	border: 2px solid #6495ED;
+	background-color: #BCD2EE;
+	height: 50px;
+	width: 120px;
+	margin: auto;
+	text-align: center;
+
+}
+
+.buttonfont1
+{
+	text-decoration: none;
+	color: #3D59AB;
+	font-family: Verdana, sans-serif;
+}
+
+.buttonfont2 
+{
+	font-weight: bold;
+	font-size: 18px;
+	color: #ffffff;
+}
+</style>
+	
+	
 </head>
 
 <body>
@@ -23,7 +53,8 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<img src= "smilyface.png" alt= "logo" style="width:128px;height:128px"/>
+		<div id="logo">HopScotch</div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
@@ -37,6 +68,16 @@
 			),
 		)); ?>
 	</div><!-- mainmenu -->
+
+	<br></br>
+	<p class= "button">Hello World!
+		<a href="https://www.facebook.com">Facebook
+			<a style= "color:green">Facebook</a>
+		</a>
+	</p>
+
+	
+	
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -48,7 +89,7 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> by HopScotch.<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
