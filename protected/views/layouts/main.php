@@ -17,7 +17,7 @@
 
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
                 $("#flip").click(function() {
@@ -68,12 +68,10 @@
                 overflow:hidden;
 
                 background: #3b5998;
-                <!--#4679BD;--> 
                 box-shadow: 0 0 3px gray;
             }
             .round-button-circle:hover {
                 background: #FF0000;
-                <!--#30588e;-->
             }
             .round-button a {
                 display:block;
@@ -119,7 +117,6 @@
         </style>
 
         <!-- google+ sign in button config -->
-        <script src="https://apis.google.com/js/client:platform.js" async defer></script>
 
 
 
@@ -182,7 +179,6 @@
         </div><!-- page -->
 
     </body>
->>>>>>> origin/master
 
 </html>
 
