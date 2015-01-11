@@ -23,6 +23,10 @@
 </head>
 
 <body>
-
+	<div>
+		<a href="index.php?r=site/contact" id="start-button">
+			<img style="border:0px;" src="../../../images/hopscotch_start.png" onmouseover="this.src='../../../images/hopscotch_start_toggle.png'" onmouseout="this.src='../../../images/hopscotch_start.png';" alt="Button" />
+		</a>
+	</div>
 </body>
 </html>
