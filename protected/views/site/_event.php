@@ -13,7 +13,7 @@
         if ($friend->isAvailable($data)) {
             $counter++;
             if ($counter <= 4) {
-                $imgString .= CHtml::image($friend->picture, $friend->fullName, array('height' => '30px', 'width' => '30px', 'class' => 'mini-prof-pic'));
+                $imgString .= CHtml::image($friend->picture, $friend->fullName, array('height' => '30px', 'width' => '30px','title' => $friend->fullName, 'class' => 'mini-prof-pic'));
             } elseif ($counter == 4) {
                 $imgString.="+";
             }

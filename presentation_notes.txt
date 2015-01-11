@@ -1,0 +1,37 @@
+presentation notes
+
+Killer Apps: "Catalyze event planning with friends"
+             "spend less time scheduling and more time doing"
+Killer Apps: "Get out of your comfort zone"
+
+uniqueness, 
+google schemer - more of a bucket list, no longer exists
+event websites - dont show you what you are availabe for, what your friends can do
+doodle/surveymonkey - manually re-enter schedule for every event you plan, dont suggest events
+facebook - more for your own events, cant see people are available
+
+impact/use potential (get people to interact more),  
+
+what are other applications?
+scheduling meetings at work,
+  you dont have to re-enter your calendar into surveymonkey/doodle
+  modify to have temporary groups of friends/coworkers
+convention, everyone wants to see different panels but still hang out.
+  limit to events from a certain location/time/friendgroup
+setting up skype calls 
+
+
+
+What needs to be done:  
+talk about adding email notifications when you click on an event
+talk about "this doesn't replace human communication"
+talk about adding price/interest/location filters
+adding scraping
+
+define your own events 
+  event promoters can post events 
+  
+
+define time zones (like for setting up a skype call)
+
+
