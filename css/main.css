@@ -10,26 +10,28 @@ html {
 
 body
 {
-    margin: 0;
-    padding: 0;
-    color: #555;
-    font: normal 10pt Arial,Helvetica,sans-serif;
-    background: #EFEFEF;
+	margin: 0;
+	padding: 0;
+	color: #555;
+	font: normal 10pt Arial,Helvetica,sans-serif;
+	background: rgba(0,0,0,0);
 }
 
 #page
 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background: white;
-    border: 1px solid #FFFF00;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background: rgba(250,250,250,.5);
+	border: 0px solid #FFFF00;
+	#C9E0ED;
 }
 
 #header
 {
-    margin: 0;
-    padding: 0;
-    border-top: 3px solid #99FF33;
+	margin: 0;
+	padding: 0;
+	border-top: 0px solid #99FF33;
+	#C9E0ED;
 }
 
 #content
@@ -44,11 +46,11 @@ body
 
 #footer
 {
-    padding: 10px;
-    margin: 10px 20px;
-    font-size: 0.8em;
-    text-align: center;
-    border-top: 1px solid #C9E0ED;
+	padding: 10px;
+	margin: 10px 20px;
+	font-size: 0.8em;
+	text-align: center;
+	border-top: 0px solid #C9E0ED;
 }
 
 #logo
@@ -57,6 +59,14 @@ body
     padding: 20px 30px;
     font-size: 500%;
 
+}
+
+#landing-div
+{
+	position: absolute;
+	margin: auto;
+	width: 100%;
+	height: 100%;
 }
 
 #button
@@ -72,11 +82,14 @@ body
 
 #start-button
 {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -26px;
-    margin-left: -137px;
+	max-width: 100%;
+	height: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	/*Fixed to be half of default image size*/
+	margin-top: 25px;
+	margin-left: -83px;
 }
 
 #round-button-circle {
@@ -330,20 +343,20 @@ figure#launchtime button.pressed {
 }
 figure#launchtime figcaption { margin-top: 2rem; }
 dialog { 
-    width: 25%; text-align: center;
-    border: 3px solid #00CD00;
-    border-radius: 10px;
-    background: #7CFC00; 
-    color: #111;
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    padding: 1em;
-    width: fit-content;
-    height: fit-content;
-    display: none;
+  width: 25%; text-align: center;
+  border: 2px solid #6495ED;
+  border-radius: 10px;
+  background: #BCD2EE; 
+  color: #111;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 1em;
+  width: fit-content;
+  height: fit-content;
+  display: none;
 }
 dialog div { 
     display: flex;

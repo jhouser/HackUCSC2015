@@ -146,20 +146,8 @@ class SiteController extends Controller {
                 'pageSize' => 10,
             ],
         ]);
-
-        $this->render('results', array('dataProvider' => $dataProvider));
-
-
-
-        /*
-          // get the events that the user can attend
-          $events = $provider->getData();
-
-          echo CListView::widget([
-          'dataProvider' => $provider,
-          'itemView' => '_event',
-          ]);
-         */
+        
+        $this->render('results', array('dataProvider'=>$dataProvider));
     }
 
     /**
