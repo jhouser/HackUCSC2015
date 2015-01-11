@@ -53,10 +53,6 @@ class SiteController extends Controller {
             ));
         }
     }
-    
-    public function actionGetUnavailability(){
-        Yii::app()->user->generateEventQuery();
-    }
 
     /**
      * This is the action to handle external exceptions.
