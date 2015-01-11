@@ -69,12 +69,10 @@
                 overflow:hidden;
 
                 background: #3b5998;
-                <!--#4679BD;--> 
                 box-shadow: 0 0 3px gray;
             }
             .round-button-circle:hover {
                 background: #FF0000;
-                <!--#30588e;-->
             }
             .round-button a {
                 display:block;
@@ -135,11 +133,10 @@
                 $this->widget('zii.widgets.CMenu', array(
                     'items' => array(
                         array('label' => 'Home', 'url' => array('/site/index')),
+                        array('label' => 'Invite', 'url' => array('/site/invite')),
                         array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
-                        array('label' => 'Invite', 'url' => array('/site/contact')),
                         array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-                        array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
-                        array('label' => 'Results', 'url' => array('/site/results'))
+                        array('label' => 'Logout (' . Yii::app()->user->fullName . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
                     ),
                 ));
                 ?>
