@@ -145,7 +145,7 @@
                     $this->widget('zii.widgets.CMenu', array(
                         'items' => array(
                             array('label' => 'Home', 'url' => array('/site/index')),
-                            array('label' => 'Invite', 'url' => array('/site/invite')),
+                            array('label' => 'People', 'url' => array('/site/invite')),
                             array('label' => 'Google Sync', 'url' => array('/site/calendarSync')),
                             array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
                             array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
