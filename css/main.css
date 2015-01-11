@@ -1,36 +1,40 @@
 html
 { 
-  background-image: url("../images/hopscotch_home_clean.jpg");
-  width: 100%;
-  height: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background-image: url("../images/hopscotch_home_clean.jpg");
+    width: 100%;
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 body
 {
-	margin: 0;
-	padding: 0;
-	color: #555;
-	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: rgba(0,0,0,0);
+    margin: 0;
+    padding: 0;
+    color: #555;
+    font: normal 10pt Arial,Helvetica,sans-serif;
+    background: rgba(0,0,0,0);
 }
 
 #page
 {
-	margin-top: 5px;
-	margin-bottom: 5px;
-	background: rgba(250,250,250,.5);
-	border: 0px solid #FFFF00;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: rgba(250,250,250,.5);
+    border: 0px solid #FFFF00;
 }
 
 #header
 {
-	margin: 0;
-	padding: 0;
-	border-top: 0px solid #99FF33;
+    margin: 0;
+    padding: 0;
+    border-top: 0px solid #99FF33;
 }
 
 #content
@@ -45,11 +49,11 @@ body
 
 #footer
 {
-	padding: 10px;
-	margin: 10px 20px;
-	font-size: 0.8em;
-	text-align: center;
-	border-top: 0px solid #C9E0ED;
+    padding: 10px;
+    margin: 10px 20px;
+    font-size: 0.8em;
+    text-align: center;
+    border-top: 0px solid #C9E0ED;
 }
 
 #logo
@@ -311,20 +315,20 @@ figure#launchtime button.pressed {
 }
 figure#launchtime figcaption { margin-top: 2rem; }
 dialog { 
-  width: 25%; text-align: center;
-  border: 2px solid #6495ED;
-  border-radius: 10px;
-  background: #BCD2EE; 
-  color: #111;
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  padding: 1em;
-  width: fit-content;
-  height: fit-content;
-  display: none;
+    width: 25%; text-align: center;
+    border: 2px solid #6495ED;
+    border-radius: 10px;
+    background: #BCD2EE; 
+    color: #111;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 1em;
+    width: fit-content;
+    height: fit-content;
+    display: none;
 }
 dialog div { 
     display: flex;
