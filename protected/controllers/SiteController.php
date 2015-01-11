@@ -15,7 +15,8 @@ class SiteController extends Controller {
                 'users' => array('*'),
             ),
             array('allow',
-                'actions' => array('index', 'calendarSync', 'page', 'logout', 'invite', 'addFriend'),
+                'actions' => array('index', 'calendarSync', 'page', 'logout',
+                    'invite', 'addFriend', 'cleanCurrentUser'),
                 'users' => array('@'),
             ),
             array('deny',
@@ -66,7 +67,7 @@ class SiteController extends Controller {
         $this->render('invite', array('dataProvider' => $dataProvider));
     }
 
-    public function actionCalendarSync() {
+    public function actionCalendarSync($isNewUser = false) {
         if (isset(Yii::app()->session['access_token'])) {
             $client = new Google_Client();
             $client->setClientId('1019880111828-rih5k3iugp8k1p7ha550uofhec3cj0jd.apps.googleusercontent.com');
@@ -97,11 +98,9 @@ class SiteController extends Controller {
                             $userEvent->eventId = $eventModel->id;
                             $userEvent->save();
                         }
-                    } elseif ($event['summary'] != 'Hackathon!') {
-                        printR($event);
                     }
                 }
-                $this->redirect($this->createUrl('index'));
+                $this->redirect($isNewUser ? $this->createUrl('invite') : $this->createUrl('index'));
             }
             $calendars = array();
             foreach ($calendar->calendarList->listCalendarList() as $calObj) {
@@ -198,7 +197,7 @@ class SiteController extends Controller {
             $identity = new UserIdentity($email, '');
             Yii::app()->user->login($identity);
             $user->syncCalendar();
-            echo $newUser ? $this->createUrl('site/calendarSync') : Yii::app()->user->returnUrl;
+            echo $newUser ? $this->createUrl('site/calendarSync', array('isNewUser' => true)) : Yii::app()->user->returnUrl;
         } else {
             // display the login form
             $this->render('login');
@@ -211,6 +210,19 @@ class SiteController extends Controller {
     public function actionLogout() {
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
+    }
+
+    public function actionCleanCurrentUser() {
+        $user = Yii::app()->user->getModel();
+        $events = $user->userEvents;
+        foreach($events as $event){
+            if(isset($event->event)){
+                $event->event->delete();
+            }
+        }
+        $user->delete();
+        Yii::app()->user->logout();
+        $this->redirect($this->createUrl('login'));
     }
 
 }
