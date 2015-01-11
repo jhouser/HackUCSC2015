@@ -8,16 +8,21 @@
     $isAttending = $user->isAttending($data);
     $counter = 0;
     $imgString = "";
+    $extraFriends = array();
     foreach ($user->userFriends1 as $userFriend) {
         $friend = $userFriend->friend;
         if ($friend->isAvailable($data)) {
             $counter++;
-            if ($counter <= 4) {
-                $imgString .= CHtml::image($friend->picture, $friend->fullName, array('height' => '30px', 'width' => '30px','title' => $friend->fullName, 'class' => 'mini-prof-pic'));
-            } elseif ($counter == 4) {
-                $imgString.="+";
+            if ($counter < 4) {
+                $imgString .= CHtml::image($friend->picture, $friend->fullName, array('height' => '30px', 'width' => '30px', 'title' => $friend->fullName, 'class' => 'mini-prof-pic'));
+            } elseif ($counter >= 4) {
+                $extraFriends[] = $friend->fullName;
             }
         }
+    }
+    if ($counter >= 4) {
+        $titleString = implode(", ",$extraFriends);
+        $imgString.=CHtml::image('images/ellipses.png', '', array('height' => '30px', 'width' => '30px','title'=>$titleString));
     }
     ?>
 

@@ -148,10 +148,10 @@ class SiteController extends Controller {
                     $googleEvent->setEnd($googleEndTime);
                     $googleEvent->setSummary($event->title);
                     $googleEvent->setDescription($event->description);
-                    $googleEvent->attendees =$attendees;
+                    $googleEvent->attendees = $attendees;
                     $calendar->events->insert(Yii::app()->user->calendar, $googleEvent);
                     $guests[] = $user;
-                    foreach($guests as $guest){
+                    foreach ($guests as $guest) {
                         $userEvent = new UserEvent();
                         $userEvent->userId = $guest->id;
                         $userEvent->eventId = $eventId;
@@ -265,6 +265,12 @@ class SiteController extends Controller {
 
     public function actionCleanCurrentUser() {
         $user = Yii::app()->user->getModel();
+        $events = $user->userEvents;
+        foreach ($events as $event) {
+            if (isset($event->event)) {
+                $event->event->delete();
+            }
+        }
         $user->delete();
         Yii::app()->user->logout();
         $this->redirect($this->createUrl('login'));

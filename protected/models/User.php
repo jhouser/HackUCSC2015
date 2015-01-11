@@ -112,16 +112,6 @@ class User extends CActiveRecord {
         return parent::model($className);
     }
 
-    public function beforeDelete() {
-        $events = $this->userEvents;
-        foreach ($events as $event) {
-            if (isset($event->event)) {
-                $event->event->delete();
-            }
-        }
-        parent::beforeDelete();
-    }
-
     public function isFriend(User $other) {
         $friends = $this->userFriends1;
         foreach ($friends as $friend) {
