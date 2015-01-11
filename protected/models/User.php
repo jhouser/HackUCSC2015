@@ -182,7 +182,9 @@ class User extends CActiveRecord {
             $calendar = new Google_Service_Calendar($client);
             if (isset($this->calendar)) {
                 foreach ($this->userEvents as $event) {
-                    $event->event->delete();
+                    if (isset($event->event)) {
+                        $event->event->delete();
+                    }
                 }
                 $calId = $this->calendar;
                 $objDateTime = new DateTime('NOW');
