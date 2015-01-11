@@ -18,14 +18,14 @@
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script> 
-$(document).ready(function(){
-  $("#flip").click(function(){
-    $("#panel").slideToggle("slow");
-  });
-});
-</script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#flip").click(function() {
+                    $("#panel").slideToggle("slow");
+                });
+            });
+        </script>
 
 <style>	
 .button
@@ -175,6 +175,27 @@ width: 300px;
 
 </div><!-- page -->
 
-</body>
+            <?php if (isset($this->breadcrumbs)): ?>
+                <?php
+                $this->widget('zii.widgets.CBreadcrumbs', array(
+                    'links' => $this->breadcrumbs,
+                ));
+                ?><!-- breadcrumbs -->
+            <?php endif ?>
+
+            <?php echo $content; ?>
+
+            <div class="clear"></div>
+
+            <div id="footer">
+
+                Copyright &copy; <?php echo date('Y'); ?> by HopScotch.<br/>
+                All Rights Reserved.<br/>
+                <?php echo Yii::powered(); ?>
+            </div><!-- footer -->
+
+        </div><!-- page -->
+
+    </body>
 
 </html>

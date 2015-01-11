@@ -9,7 +9,9 @@ class SiteController extends Controller {
     public function actionIndex() {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
-		$this->layout="column0";
+        if (Yii::app()->user->isGuest) {
+            $this->redirect($this->createUrl('login'));
+        }
         $this->render('index');
     }
 
@@ -53,11 +55,11 @@ class SiteController extends Controller {
             ));
         }
     }
-    
-    public function actionTest(){
+
+    public function actionTest() {
         $events = Event::model()->findAll();
-        foreach($events as $event){
-            echo Yii::app()->user->isAvailable($event)?"1":"0";
+        foreach ($events as $event) {
+            echo Yii::app()->user->isAvailable($event) ? "1" : "0";
         }
     }
 
@@ -100,14 +102,7 @@ class SiteController extends Controller {
      * Displays the login page
      */
     public function actionLogin() {
-        $model = new LoginForm;
-
-        // if it is ajax validation request
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
-
+        $this->layout = "column0";
         if (isset($_POST['authResult'])) {
             $authResult = json_encode($_POST['authResult']);
             Yii::app()->session['access_token'] = $authResult;
@@ -135,26 +130,18 @@ class SiteController extends Controller {
             Yii::app()->user->login($identity);
             echo Yii::app()->user->returnUrl;
         } else {
-
-            // collect user input data
-            if (isset($_POST['LoginForm'])) {
-                $model->attributes = $_POST['LoginForm'];
-                // validate user input and redirect to the previous page if valid
-                if ($model->validate() && $model->login())
-                    $this->redirect(Yii::app()->user->returnUrl);
-            }
             // display the login form
-            $this->render('login', array('model' => $model));
+            $this->render('login');
         }
     }
 
-	//get a data provider
-	//render view
-	
-	
-	public function actionResults() {
-        $dataProvider = new CActiveDataProvider('Event',[
-            
+    //get a data provider
+    //render view
+
+
+    public function actionResults() {
+        $dataProvider = new CActiveDataProvider('Event', [
+
             'pagination' => [
                 'pageSize' => 10,
             ],
@@ -162,7 +149,7 @@ class SiteController extends Controller {
         
         $this->render('results', array('dataProvider'=>$dataProvider));
     }
-	
+
     /**
      * Logs out the current user and redirect to homepage.
      */
