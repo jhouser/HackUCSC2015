@@ -311,9 +311,9 @@ figure#launchtime button.pressed {
 figure#launchtime figcaption { margin-top: 2rem; }
 dialog { 
   width: 25%; text-align: center;
-  border: 3px solid #00CD00;
+  border: 2px solid #6495ED;
   border-radius: 10px;
-  background: #7CFC00; 
+  background: #BCD2EE; 
   color: #111;
   font-weight: bold;
   position: absolute;

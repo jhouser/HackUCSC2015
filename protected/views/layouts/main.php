@@ -1,10 +1,7 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 
-=======
->>>>>>> 4ceb785c218aba48281488cacb4bd7da57768eff
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="language" content="en">
@@ -21,8 +18,7 @@
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-<<<<<<< HEAD
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script> 
 $(document).ready(function(){
   $("#flip").click(function(){
@@ -31,8 +27,6 @@ $(document).ready(function(){
 });
 </script>
 
-=======
->>>>>>> 4ceb785c218aba48281488cacb4bd7da57768eff
 <style>	
 .button
 {
@@ -125,16 +119,9 @@ width: 300px;
 }
 </style>
 	
-	
-<<<<<<< HEAD
-	<!-- google+ sign in button config -->
-	<script src="https://apis.google.com/js/client:platform.js" async defer></script>
-=======
 <!-- google+ sign in button config -->
 <script src="https://apis.google.com/js/client:platform.js" async defer></script>
->>>>>>> 4ceb785c218aba48281488cacb4bd7da57768eff
 
-	
 </head>
 
 <body>
@@ -167,14 +154,9 @@ width: 300px;
 	
 	<div class="round-button"><div class="round-button-circle"><a href="https://facebook.com" class="round-button">Facebook</a></div></div>
 	
-<<<<<<< HEAD
 <div id="flip">Click to Show</div>
 <div id="panel">Hello world!</div>
 
-	
-	
-=======
->>>>>>> 4ceb785c218aba48281488cacb4bd7da57768eff
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -186,15 +168,8 @@ width: 300px;
 	<div class="clear"></div>
 
 	<div id="footer">
-<<<<<<< HEAD
-
 		Copyright &copy; <?php echo date('Y'); ?> by HopScotch.<br/>
 		All Rights Reserved.<br/>
-
-=======
-		Copyright &copy; <?php echo date('Y'); ?> by HopScotch.<br/>
-		All Rights Reserved.<br/>
->>>>>>> 4ceb785c218aba48281488cacb4bd7da57768eff
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
 
@@ -203,4 +178,3 @@ width: 300px;
 </body>
 
 </html>
-
