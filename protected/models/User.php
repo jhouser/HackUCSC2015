@@ -9,9 +9,11 @@
  * @property string $email
  * @property integer $maxBudget
  * @property string $refreshToken
+ * @property string $picture
  *
  * The followings are the available model relations:
  * @property UserBusyTimes[] $userBusyTimes
+ * @property UserEvent[] $userEvents
  * @property UserFriend[] $userFriends
  * @property UserFriend[] $userFriends1
  * @property UserTypePreferences[] $userTypePreferences
@@ -37,9 +39,10 @@ class User extends CActiveRecord
 			array('fullName, email', 'required'),
 			array('maxBudget', 'numerical', 'integerOnly'=>true),
 			array('fullName, email, refreshToken', 'length', 'max'=>255),
+			array('picture', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, fullName, email, maxBudget, refreshToken', 'safe', 'on'=>'search'),
+			array('id, fullName, email, maxBudget, refreshToken, picture', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,10 +54,11 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'userBusyTimes' => array(self::HAS_MANY, 'UserBusyTimes', 'userId'),
+			'userBusyTimes' => array(self::HAS_MANY, 'UserBusyTime', 'userId'),
+			'userEvents' => array(self::HAS_MANY, 'UserEvent', 'userId'),
 			'userFriends' => array(self::HAS_MANY, 'UserFriend', 'friendId'),
 			'userFriends1' => array(self::HAS_MANY, 'UserFriend', 'userId'),
-			'userTypePreferences' => array(self::HAS_MANY, 'UserTypePreferences', 'userId'),
+			'userTypePreferences' => array(self::HAS_MANY, 'UserTypePreference', 'userId'),
 		);
 	}
 
@@ -69,6 +73,7 @@ class User extends CActiveRecord
 			'email' => 'Email',
 			'maxBudget' => 'Max Budget',
 			'refreshToken' => 'Refresh Token',
+			'picture' => 'Picture',
 		);
 	}
 
@@ -95,6 +100,7 @@ class User extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('maxBudget',$this->maxBudget);
 		$criteria->compare('refreshToken',$this->refreshToken,true);
+		$criteria->compare('picture',$this->picture,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
