@@ -13,6 +13,7 @@
             <?php
             echo CHtml::image($data->picture, '', array('height' => '30px',
                 'width' => '30px',
+				'title' => $data->fullName,
                 'class' => 'mini-prof-pic'));
             ?>
         </div>
