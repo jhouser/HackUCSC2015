@@ -25,6 +25,9 @@ body
     -webkit-border-radius: 5px;
     margin-bottom:5px;
 	background: -webkit-linear-gradient(bottom,rgba(20,20,20,0),rgba(20,20,20,.2));
+    background: -moz-linear-gradient(bottom,rgba(20,20,20,0),rgba(20,20,20,.2));
+    background: -o-linear-gradient(bottom,rgba(20,20,20,0),rgba(20,20,20,.2));
+    background: -linear-gradient(bottom,rgba(20,20,20,0),rgba(20,20,20,.2));
 }
 
 .friend-content{
