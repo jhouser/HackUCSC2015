@@ -59,6 +59,11 @@ class WebUser extends CWebUser {
         $user = $this->loadUser($this->getName());
         $user->syncCalendar();
     }
+    
+    public function isFriend(User $other){
+        $user = $this->loadUser($this->getName());
+        return $user->isFriend($other);
+    }
 
     protected function loadUser($email = null) {
         if ($this->_model === null) {
