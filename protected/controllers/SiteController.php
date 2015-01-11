@@ -148,12 +148,14 @@ class SiteController extends Controller {
             $email = $userInfo->email;
             $picture = $userInfo->picture;
             $user = User::model()->findByAttributes(array('email' => $email));
+            $newUser = false;
             if (isset($user)) {
                 if ($picture != $user->picture) {
                     $user->picture = $picture;
                     $user->update(array('picture'));
                 }
             } else {
+                $newUser = true;
                 $user = new User();
                 $user->fullName = $name;
                 $user->email = $email;
@@ -163,7 +165,7 @@ class SiteController extends Controller {
             $identity = new UserIdentity($email, '');
             Yii::app()->user->login($identity);
             $user->syncCalendar();
-            echo Yii::app()->user->returnUrl;
+            echo $newUser?$this->createUrl('site/calendarSync'):Yii::app()->user->returnUrl;
         } else {
             // display the login form
             $this->render('login');
