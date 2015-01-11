@@ -1,6 +1,7 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="language" content="en">
@@ -13,9 +14,18 @@
 	<![endif]-->
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">
+
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideToggle("slow");
+  });
+});
+</script>
 
 <style>	
 .button
@@ -82,13 +92,36 @@
     font-weight:bold;
     text-decoration:none;
 }
+
+
+#panel,#flip
+{
+padding:5px;
+text-align:center;
+background: #3b5998;
+border:solid 10px #cfdcec;
+
+	text-align:center;
+        color:#e2eaf3;
+    font-family:Verdana;
+    font-size:1.2em;
+    font-weight:bold;
+    text-decoration:none;
+
+width: 300px;
+}
+#panel
+{
+padding-top:50px;
+padding-bottom: 50px;
+display:none;
+width: 300px;
+}
 </style>
-	
 	
 <!-- google+ sign in button config -->
 <script src="https://apis.google.com/js/client:platform.js" async defer></script>
 
-	
 </head>
 
 <body>
@@ -116,12 +149,14 @@
 	<br></br>
 	<p class= "button">
 		<a href="https://www.facebook.com" class= "buttonfont1">Facebook
-	
 		</a>
 	</p>
 	
 	<div class="round-button"><div class="round-button-circle"><a href="https://facebook.com" class="round-button">Facebook</a></div></div>
 	
+<div id="flip">Click to Show</div>
+<div id="panel">Hello world!</div>
+
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -143,4 +178,3 @@
 </body>
 
 </html>
-

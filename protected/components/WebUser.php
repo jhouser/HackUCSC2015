@@ -13,9 +13,34 @@ class WebUser extends CWebUser {
         }
     }
 
+    public function getId() {
+        $user = $this->loadUser($this->getName());
+        return $user->id;
+    }
+
     public function getPicture() {
         $user = $this->loadUser($this->getName());
         return $user->picture;
+    }
+
+    public function getUnavailability() {
+        $user = $this->loadUser($this->getName());
+        return $user->getUnavailability();
+    }
+
+    public function getAvailability() {
+        $user = $this->loadUser($this->getName());
+        return $user->getAvailability();
+    }
+
+    public function generateEventCriteria() {
+        $user = $this->loadUser($this->getName());
+        return $user->generateEventCriteria();
+    }
+
+    public function isAvailable(Event $event) {
+        $user = $this->loadUser($this->getName());
+        return $user->isAvailable($event);
     }
 
     protected function loadUser($email = null) {

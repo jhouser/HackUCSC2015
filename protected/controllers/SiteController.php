@@ -13,6 +13,54 @@ class SiteController extends Controller {
         $this->render('index');
     }
 
+    public function actionCalendarSync() {
+        if (isset(Yii::app()->session['access_token'])) {
+            $client = new Google_Client();
+            $client->setClientId('1019880111828-rih5k3iugp8k1p7ha550uofhec3cj0jd.apps.googleusercontent.com');
+            $client->setClientSecret('ad9qK6uRBI37s3LS9wY_HlNm');
+            $client->setAccessToken(Yii::app()->session['access_token']);
+            $calendar = new Google_Service_Calendar($client);
+            if (isset($_POST['calendar'])) {
+                $calId = $_POST['calendar'];
+                $objDateTime = new DateTime('NOW');
+                $isoDate = $objDateTime->format(DateTime::ISO8601);
+                $events = $calendar->events->listEvents($calId, array('timeMin' => $isoDate));
+                foreach ($events['modelData']['items'] as $event) {
+                    $id = $event['id'];
+                    $eventModel = Event::model()->findByAttributes(array('googleCalendarId' => $id));
+                    if (!isset($eventModel)) {
+                        $eventModel = new Event();
+                        $eventModel->title = $event['summary'];
+                        $eventModel->googleCalendarId = $id;
+                        $eventModel->startTime = strtotime($event['start']['dateTime']);
+                        $eventModel->endTime = strtotime($event['end']['dateTime']);
+                        $eventModel->isUserEvent = 1;
+                        if ($eventModel->save()) {
+                            $userEvent = new UserEvent();
+                            $userEvent->userId = Yii::app()->user->id;
+                            $userEvent->eventId = $eventModel->id;
+                            $userEvent->save();
+                        }
+                    }
+                }
+            }
+            $calendars = array();
+            foreach ($calendar->calendarList->listCalendarList() as $calObj) {
+                $calendars[$calObj['id']] = $calObj['summary'];
+            }
+            $this->render('calendarSync', array(
+                'calendars' => $calendars,
+            ));
+        }
+    }
+    
+    public function actionTest(){
+        $events = Event::model()->findAll();
+        foreach($events as $event){
+            echo Yii::app()->user->isAvailable($event)?"1":"0";
+        }
+    }
+
     /**
      * This is the action to handle external exceptions.
      */
@@ -61,8 +109,8 @@ class SiteController extends Controller {
         }
 
         if (isset($_POST['authResult'])) {
-            $code = $_POST['authResult']['code'];
             $authResult = json_encode($_POST['authResult']);
+            Yii::app()->session['access_token'] = $authResult;
             $client = new Google_Client();
             $client->setAccessToken($authResult);
             $userService = new Google_Service_Oauth2($client);
@@ -72,7 +120,7 @@ class SiteController extends Controller {
             $picture = $userInfo->picture;
             $user = User::model()->findByAttributes(array('email' => $email));
             if (isset($user)) {
-                if($picture != $user->picture){
+                if ($picture != $user->picture) {
                     $user->picture = $picture;
                     $user->update(array('picture'));
                 }
