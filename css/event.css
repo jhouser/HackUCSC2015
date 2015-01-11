@@ -13,7 +13,12 @@ body
 .text
 {
     display: inline-block;
-    width: 50%;
+    width: 30%;
+}
+
+.friend
+{
+    display: inline-block;
 }
 
 .icon
