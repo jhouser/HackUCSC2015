@@ -128,10 +128,12 @@ width: 300px;
 
 <div class="container" id="page">
 
+	<!-- 
 	<div id="header">
 		<img src= "smilyface.png" alt= "logo" style="width:128px;height:128px"/>
 		<div id="logo">HopScotch</div>
-	</div><!-- header -->
+	</div>
+	-->
 
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
@@ -146,6 +148,7 @@ width: 300px;
 		)); ?>
 	</div><!-- mainmenu -->
 
+	<!-- 
 	<br></br>
 	<p class= "button">
 		<a href="https://www.facebook.com" class= "buttonfont1">Facebook
@@ -154,7 +157,10 @@ width: 300px;
 	
 	<div class="round-button"><div class="round-button-circle"><a href="https://facebook.com" class="round-button">Facebook</a></div></div>
 	
+	
 <div id="flip">Click to Show</div>
+-->
+
 <div id="panel">Hello world!</div>
 
 	<?php if(isset($this->breadcrumbs)):?>
