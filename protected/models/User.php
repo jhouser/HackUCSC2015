@@ -169,6 +169,7 @@ class User extends CActiveRecord {
                     . ' AND (endTime BETWEEN ' . $timeFrame['start'] . ' AND ' . $timeFrame['end'] . ')', 'OR');
         }
         $criteria->addCondition('isUserEvent = 0');
+        $criteria->order = 'startTime ASC';
         return $criteria;
     }
 
