@@ -29,7 +29,7 @@ VALUES
 ('Craft Beer Tasting', 'Enjoy some local brews', 2, 0, 1421206200, 1421211600),
 -- Wednesday
 -- 6:00 - 7:00am
-('Early Bird Bagle Deal', '20% off for early risers at Bobs Bagels', 2, 0, 1421244000, 1421247600), 
+('Early Bird Bagel Deal', '20% off for early risers at Bobs Bagels', 2, 0, 1421244000, 1421247600), 
 -- 11 - 1:45
 ('Read to Children', 'Come read books to preschoolers at the library', 4, 0, 1421262000, 1421271900),
 -- 12 - 3pm
