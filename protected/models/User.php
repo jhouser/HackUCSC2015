@@ -111,11 +111,21 @@ class User extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-    
-    public function isFriend(User $other){
+
+    public function beforeDelete() {
+        $events = $this->userEvents;
+        foreach ($events as $event) {
+            if (isset($event->event)) {
+                $event->event->delete();
+            }
+        }
+        parent::beforeDelete();
+    }
+
+    public function isFriend(User $other) {
         $friends = $this->userFriends1;
-        foreach($friends as $friend){
-            if($friend->friendId == $other->id){
+        foreach ($friends as $friend) {
+            if ($friend->friendId == $other->id) {
                 return true;
             }
         }
@@ -140,7 +150,9 @@ class User extends CActiveRecord {
         }
         foreach ($this->userEvents as $eventLinkage) {
             $event = $eventLinkage->event;
-            $unavailability[] = array('start' => $event->startTime, 'end' => $event->endTime);
+            if ($event->isUserEvent) {
+                $unavailability[] = array('start' => $event->startTime, 'end' => $event->endTime);
+            }
         }
         usort($unavailability, "cmp_by_startTime");
         return $unavailability;
@@ -182,6 +194,15 @@ class User extends CActiveRecord {
             }
         }
         return true;
+    }
+    
+    public function isAttending(Event $event){
+        foreach($this->userEvents as $userEvent){
+            if($userEvent->eventId == $event->id){
+                return true;
+            }
+        }
+        return false;
     }
 
     public function syncCalendar() {

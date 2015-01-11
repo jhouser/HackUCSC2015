@@ -16,7 +16,7 @@ class SiteController extends Controller {
             ),
             array('allow',
                 'actions' => array('index', 'calendarSync', 'page', 'logout',
-                    'invite', 'addFriend', 'cleanCurrentUser'),
+                    'invite', 'addFriend', 'cleanCurrentUser', 'signUpForEvent'),
                 'users' => array('@'),
             ),
             array('deny',
@@ -109,6 +109,57 @@ class SiteController extends Controller {
             $this->render('calendarSync', array(
                 'calendars' => $calendars,
             ));
+        }
+    }
+
+    public function actionSignUpForEvent($eventId) {
+        $event = Event::model()->findByPk($eventId);
+        if (isset($event)) {
+            if (isset(Yii::app()->session['access_token'])) {
+                $client = new Google_Client();
+                $client->setClientId('1019880111828-rih5k3iugp8k1p7ha550uofhec3cj0jd.apps.googleusercontent.com');
+                $client->setClientSecret('ad9qK6uRBI37s3LS9wY_HlNm');
+                $client->setAccessToken(Yii::app()->session['access_token']);
+                $calendar = new Google_Service_Calendar($client);
+                if (isset(Yii::app()->user->calendar)) {
+                    $user = Yii::app()->user->getModel();
+                    $attendees = array();
+                    $guests = array();
+                    foreach ($user->userFriends1 as $userFriend) {
+                        $friend = $userFriend->friend;
+                        $guests[] = $friend;
+                        if ($friend->isAvailable($event)) {
+                            $attendee = new Google_Service_Calendar_EventAttendee();
+                            $attendee->setEmail($friend->email);
+                            $attendees[] = $attendee;
+                        }
+                    }
+                    $googleEvent = new Google_Service_Calendar_Event();
+                    $objDateTime = new DateTime('NOW');
+                    $objDateTime->setTimeStamp($event->startTime);
+                    $startTime = $objDateTime->format(DateTime::ISO8601);
+                    $googleStartTime = new Google_Service_Calendar_EventDateTime();
+                    $googleStartTime->setDateTime($startTime);
+                    $googleEvent->setStart($googleStartTime);
+                    $objDateTime->setTimeStamp($event->endTime);
+                    $endTime = $objDateTime->format(DateTime::ISO8601);
+                    $googleEndTime = new Google_Service_Calendar_EventDateTime();
+                    $googleEndTime->setDateTime($endTime);
+                    $googleEvent->setEnd($googleEndTime);
+                    $googleEvent->setSummary($event->title);
+                    $googleEvent->setDescription($event->description);
+                    $googleEvent->attendees =$attendees;
+                    $calendar->events->insert(Yii::app()->user->calendar, $googleEvent);
+                    $guests[] = $user;
+                    foreach($guests as $guest){
+                        $userEvent = new UserEvent();
+                        $userEvent->userId = $guest->id;
+                        $userEvent->eventId = $eventId;
+                        $userEvent->save();
+                    }
+                    echo 1;
+                }
+            }
         }
     }
 
@@ -214,12 +265,6 @@ class SiteController extends Controller {
 
     public function actionCleanCurrentUser() {
         $user = Yii::app()->user->getModel();
-        $events = $user->userEvents;
-        foreach($events as $event){
-            if(isset($event->event)){
-                $event->event->delete();
-            }
-        }
         $user->delete();
         Yii::app()->user->logout();
         $this->redirect($this->createUrl('login'));

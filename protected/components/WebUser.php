@@ -34,6 +34,11 @@ class WebUser extends CWebUser {
         $user = $this->loadUser($this->getName());
         return $user->picture;
     }
+    
+    public function getCalendar(){
+        $user = $this->loadUser($this->getName());
+        return $user->calendar;
+    }
 
     public function getUnavailability() {
         $user = $this->loadUser($this->getName());
