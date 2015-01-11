@@ -133,6 +133,9 @@ class SiteController extends Controller {
             // display the login form
             $this->render('login');
         }
+		
+		
+		
     }
 
     //get a data provider

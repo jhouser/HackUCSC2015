@@ -126,27 +126,32 @@
 
     <body>
 
-        <div class="container" id="page">
+	<!-- 
+	<div id="header">
+		<img src= "smilyface.png" alt= "logo" style="width:128px;height:128px"/>
+		<div id="logo">HopScotch</div>
+	</div>
+	-->
 
             <div id="header">
                 <img src= "smilyface.png" alt= "logo" style="width:128px;height:128px"/>
                 <div id="logo">HopScotch</div>
             </div><!-- header -->
 
-            <div id="mainmenu">
-                <?php
-                $this->widget('zii.widgets.CMenu', array(
-                    'items' => array(
-                        array('label' => 'Home', 'url' => array('/site/index')),
-                        array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
-                        array('label' => 'Invite', 'url' => array('/site/contact')),
-                        array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-                        array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
-                        array('label' => 'Results', 'url' => array('/site/results'))
-                    ),
-                ));
-                ?>
-            </div><!-- mainmenu -->
+	<!-- 
+	<br></br>
+	<p class= "button">
+		<a href="https://www.facebook.com" class= "buttonfont1">Facebook
+		</a>
+	</p>
+	
+	<div class="round-button"><div class="round-button-circle"><a href="https://facebook.com" class="round-button">Facebook</a></div></div>
+	
+	
+<div id="flip">Click to Show</div>
+-->
+
+<div id="panel">Hello world!</div>
 
             <br></br>
             <p class= "button">
