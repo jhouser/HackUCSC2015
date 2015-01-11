@@ -24,21 +24,38 @@ body
     -khtml-border-radius: 5px;
     -webkit-border-radius: 5px;
     margin-bottom:5px;
+	background: -webkit-linear-gradient(bottom,rgba(20,20,20,0),rgba(20,20,20,.2));
 }
 
 .event-content{
     margin-top:10px;
 }
 
+.title
+{
+	font-weight: bold;
+}
+
+.time
+{
+	
+	
+}
+
 .text
 {
+	font-size: 1.5em;
     display: inline-block;
+	line-height: 1;
+	max-width: 60%;
 }
 
 .friend
 {
-    display: inline-block;
-    float:right;
+
+	z-index: 2;
+    float: right;
+	padding-right: 7px;
 }
 
 .icon
