@@ -4,7 +4,7 @@ VALUES
 (2, 'food'),
 (3, 'concert'),
 (4, 'volunteer'),
-(5, 'comedy')
+(5, 'comedy'),
 (6, 'sports');
 
 -- Sample Events Table

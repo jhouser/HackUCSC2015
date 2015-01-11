@@ -117,6 +117,33 @@ class SiteController extends Controller {
         }
     }
 
+	//get a data provider
+	//render view
+	
+	
+	public function actionResults() {
+        $dataProvider = new CActiveDataProvider('Event',[
+            
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+        
+        $this->render('results', array('dataProvider'=>$dataProvider));
+        
+        
+        
+        /*
+        // get the events that the user can attend
+        $events = $provider->getData();
+        
+        echo CListView::widget([
+            'dataProvider' => $provider,
+            'itemView' => '_event',
+        ]);
+        */
+    }
+	
     /**
      * Logs out the current user and redirect to homepage.
      */
