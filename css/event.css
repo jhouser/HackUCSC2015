@@ -16,11 +16,13 @@ body
 
 .friend
 {
-    display: inline-block;
+    margin-left: 260px;
+	display: inline-block;
 }
 
 .icon
 {
     display: inline-block;
+	padding-right: 10px;
 }
 
