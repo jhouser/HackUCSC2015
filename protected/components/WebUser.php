@@ -4,6 +4,10 @@ class WebUser extends CWebUser {
 
     private $_model;
 
+    public function getModel(){
+        return $this->loadUser($this->getName());
+    }
+    
     public function getFullName() {
         if (!$this->isGuest) {
             $user = $this->loadUser($this->getName());
