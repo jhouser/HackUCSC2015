@@ -35,6 +35,10 @@ body
     margin: 0;
     padding: 0;
     border-top: 0px solid #99FF33;
+    height:80px;
+    background-image: url("../images/hopscotch_title.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #content
