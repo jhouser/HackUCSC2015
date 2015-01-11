@@ -7,12 +7,12 @@
     $user = Yii::app()->user->getModel();
     $counter = 0;
     $imgString = "";
-    foreach ($user->userFriends as $userFriend) {
+    foreach ($user->userFriends1 as $userFriend) {
         $friend = $userFriend->friend;
         if ($friend->isAvailable($data)) {
             $counter++;
             if ($counter <= 4) {
-                $imgString .= CHtml::image($friend->picture, '', array('height' => '30px', 'width' => '30px', 'class' => 'mini-prof-pic'));
+                $imgString .= CHtml::image($friend->picture, $friend->fullName, array('height' => '30px', 'width' => '30px', 'class' => 'mini-prof-pic'));
             } elseif ($counter == 4) {
                 $imgString.="+";
             }
