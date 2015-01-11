@@ -24,64 +24,23 @@ class WebUser extends CWebUser {
     }
 
     public function getUnavailability() {
-        $unavailability = array();
-        date_default_timezone_set('America/Los_Angeles');
         $user = $this->loadUser($this->getName());
-        $busyTimes = $user->userBusyTimes;
-        $baseDate = strtotime('today midnight');
-        $todayOffset = date('N');
-        foreach ($busyTimes as $time) {
-            $daysOffset = ($time['day'] - $todayOffset);
-            if ($daysOffset < 0) {
-                $daysOffset = $daysOffset + 7;
-            }
-            $dayOffset = $daysOffset * (60 * 60 * 24);
-            $start = $baseDate + $dayOffset + $time['startTime'];
-            $end = $baseDate + $dayOffset + $time['endTime'];
-            $unavailability[] = array('start' => $start, 'end' => $end);
-        }
-        foreach ($user->userEvents as $eventLinkage) {
-            $event = $eventLinkage->event;
-            $unavailability[] = array('start' => $event->startTime, 'end' => $event->endTime);
-        }
-        usort($unavailability, "cmp_by_startTime");
-        return $unavailability;
+        return $user->getUnavailability();
     }
 
     public function getAvailability() {
-        $unavailability = $this->getUnavailability();
-        $availability = array();
-        $lastStart = strtotime('today midnight');
-        foreach ($unavailability as $timeFrame) {
-            $availableStart = $lastStart;
-            $availableEnd = $timeFrame['start'];
-            $availability[] = array('start' => $availableStart, 'end' => $availableEnd);
-            $lastStart = $timeFrame['end'];
-        }
-        $end = strtotime('+1 week 11:59:59 PM');
-        $availability[] = array('start' => $lastStart, 'end' => $end);
+        $user = $this->loadUser($this->getName());
+        return $user->getAvailability();
     }
 
     public function generateEventCriteria() {
-        $availability = $this->getAvailability();
-        $criteria = new CDbCriteria();
-        foreach ($availability as $timeFrame) {
-            $criteria->addCondition('(startTime BETWEEN ' . $timeFrame['start'] . ' AND ' . $timeFrame['end'] . ')'
-                    . ' AND (endTime BETWEEN ' . $timeFrame['start'] . ' AND ' . $timeFrame['end'] . ')', 'OR');
-        }
-        $criteria->addCondition('isUserEvent = 0');
-        return $criteria;
+        $user = $this->loadUser($this->getName());
+        return $user->generateEventCriteria();
     }
 
     public function isAvailable(Event $event) {
-        $unavailability = $this->getUnavailability();
-        foreach ($unavailability as $timeFrame) {
-            if (($event->startTime > $timeFrame['start'] && $event->startTime < $timeFrame['end']) ||
-                    ($event->endTime > $timeFrame['start'] && $event->endTime < $timeFrame['end'])) {
-                return false;
-            }
-        }
-        return true;
+        $user = $this->loadUser($this->getName());
+        return $user->isAvailable($event);
     }
 
     protected function loadUser($email = null) {
@@ -93,8 +52,4 @@ class WebUser extends CWebUser {
         return $this->_model;
     }
 
-}
-
-function cmp_by_startTime($a, $b) {
-    return $a["start"] - $b["start"];
 }

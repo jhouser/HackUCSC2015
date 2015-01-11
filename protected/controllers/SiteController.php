@@ -54,6 +54,13 @@ class SiteController extends Controller {
         }
     }
     
+    public function actionTest(){
+        $events = Event::model()->findAll();
+        foreach($events as $event){
+            echo Yii::app()->user->isAvailable($event)?"1":"0";
+        }
+    }
+
     /**
      * This is the action to handle external exceptions.
      */
