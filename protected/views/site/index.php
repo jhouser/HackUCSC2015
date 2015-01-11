@@ -4,6 +4,7 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
+<!--<body style="background-image:url(images/hopscotch_home.jpg);background-size:cover;-o-background-size:cover;-moz-background-size:cover;-webkit-background-size:cover;background-repeat:no-repeat;background-position:center-center">
 <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
 
 <p>Congratulations! You have successfully created your Yii application.</p>
@@ -18,3 +19,4 @@ $this->pageTitle=Yii::app()->name;
 the <a href="http://www.yiiframework.com/doc/">documentation</a>.
 Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
 should you have any questions.</p>
+</body>-->
