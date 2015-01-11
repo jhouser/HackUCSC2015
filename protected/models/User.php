@@ -8,7 +8,7 @@
  * @property string $fullName
  * @property string $email
  * @property integer $maxBudget
- * @property string $refreshToken
+ * @property string $calendar
  * @property string $picture
  *
  * The followings are the available model relations:
@@ -36,11 +36,11 @@ class User extends CActiveRecord {
         return array(
             array('fullName, email', 'required'),
             array('maxBudget', 'numerical', 'integerOnly' => true),
-            array('fullName, email, refreshToken', 'length', 'max' => 255),
+            array('fullName, email, calendar', 'length', 'max' => 255),
             array('picture', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, fullName, email, maxBudget, refreshToken, picture', 'safe', 'on' => 'search'),
+            array('id, fullName, email, maxBudget, calendar, picture', 'safe', 'on' => 'search'),
         );
     }
 
@@ -68,7 +68,7 @@ class User extends CActiveRecord {
             'fullName' => 'Full Name',
             'email' => 'Email',
             'maxBudget' => 'Max Budget',
-            'refreshToken' => 'Refresh Token',
+            'calendar' => 'Refresh Token',
             'picture' => 'Picture',
         );
     }
@@ -94,7 +94,7 @@ class User extends CActiveRecord {
         $criteria->compare('fullName', $this->fullName, true);
         $criteria->compare('email', $this->email, true);
         $criteria->compare('maxBudget', $this->maxBudget);
-        $criteria->compare('refreshToken', $this->refreshToken, true);
+        $criteria->compare('calendar', $this->calendar, true);
         $criteria->compare('picture', $this->picture, true);
 
         return new CActiveDataProvider($this, array(
@@ -171,6 +171,40 @@ class User extends CActiveRecord {
             }
         }
         return true;
+    }
+
+    public function syncCalendar() {
+        if (isset(Yii::app()->session['access_token'])) {
+            $client = new Google_Client();
+            $client->setClientId('1019880111828-rih5k3iugp8k1p7ha550uofhec3cj0jd.apps.googleusercontent.com');
+            $client->setClientSecret('ad9qK6uRBI37s3LS9wY_HlNm');
+            $client->setAccessToken(Yii::app()->session['access_token']);
+            $calendar = new Google_Service_Calendar($client);
+            if (isset($this->calendar)) {
+                $calId = $this->calendar;
+                $objDateTime = new DateTime('NOW');
+                $isoDate = $objDateTime->format(DateTime::ISO8601);
+                $events = $calendar->events->listEvents($calId, array('timeMin' => $isoDate));
+                foreach ($events['modelData']['items'] as $event) {
+                    $id = $event['id'];
+                    $eventModel = Event::model()->findByAttributes(array('googleCalendarId' => $id));
+                    if (!isset($eventModel)) {
+                        $eventModel = new Event();
+                        $eventModel->title = $event['summary'];
+                        $eventModel->googleCalendarId = $id;
+                        $eventModel->startTime = strtotime($event['start']['dateTime']);
+                        $eventModel->endTime = strtotime($event['end']['dateTime']);
+                        $eventModel->isUserEvent = 1;
+                        if ($eventModel->save()) {
+                            $userEvent = new UserEvent();
+                            $userEvent->userId = Yii::app()->user->id;
+                            $userEvent->eventId = $eventModel->id;
+                            $userEvent->save();
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

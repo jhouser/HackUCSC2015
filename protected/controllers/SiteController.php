@@ -61,6 +61,9 @@ class SiteController extends Controller {
             $calendar = new Google_Service_Calendar($client);
             if (isset($_POST['calendar'])) {
                 $calId = $_POST['calendar'];
+                $user = Yii::app()->user->getModel();
+                $user->calendar = $calId;
+                $user->update(array('calendar'));
                 $objDateTime = new DateTime('NOW');
                 $isoDate = $objDateTime->format(DateTime::ISO8601);
                 $events = $calendar->events->listEvents($calId, array('timeMin' => $isoDate));
@@ -82,6 +85,7 @@ class SiteController extends Controller {
                         }
                     }
                 }
+                $this->redirect($this->createUrl('index'));
             }
             $calendars = array();
             foreach ($calendar->calendarList->listCalendarList() as $calObj) {
@@ -158,6 +162,7 @@ class SiteController extends Controller {
             }
             $identity = new UserIdentity($email, '');
             Yii::app()->user->login($identity);
+            $user->syncCalendar();
             echo Yii::app()->user->returnUrl;
         } else {
             // display the login form
