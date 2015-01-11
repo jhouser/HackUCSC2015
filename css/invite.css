@@ -1,0 +1,35 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    color: #555;
+    font: normal 10pt Arial,Helvetica,sans-serif;
+
+}
+
+.mini-prof-pic{
+    margin-right:4px;
+    border: 1px solid black;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.friend{
+    border: 2px solid black;
+    border-bottom: 1px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-bottom:5px;
+	background: -webkit-linear-gradient(bottom,rgba(20,20,20,0),rgba(20,20,20,.2));
+}
+
+.friend-content{
+    margin-top:4px;
+	padding-left:10px;
+	font-weight: bold;
+}
+
