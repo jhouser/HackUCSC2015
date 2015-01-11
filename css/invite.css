@@ -31,8 +31,56 @@ body
 }
 
 .friend-content{
-    margin-top:4px;
-	padding-left:10px;
-	font-weight: bold;
+    margin-top:10px;
+    padding-left:10px;
+    font-weight: bold;
+    height:40px;
 }
 
+.friend-icon{
+    float:left;
+    margin-right:10px;
+    display:inline-block;
+}
+
+.friend-text{
+    line-height:35px;
+    display:inline-block;
+}
+
+.friend-add-button{
+    background-image: url("../images/add_button.png");
+    background-size: cover;
+    display:inline-block;
+    float:left;
+    margin-right:5px;
+    margin-top:6px;
+    height:20px;
+    width:20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.is-friend-button{
+    background-image: url("../images/checkmark.png");
+    background-size: cover;
+    display:inline-block;
+    float:left;
+    margin-right:5px;
+    margin-top:6px;
+    height:20px;
+    width:20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.friend-add-button:hover{
+    background-image: url("../images/add_button_toggle.png");
+    background-size: cover;
+}

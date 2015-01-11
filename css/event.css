@@ -36,28 +36,28 @@ body
 
 .title
 {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .time
 {
-	margin-left: 105px;
+    margin-left: 105px;
 }
 
 .text
 {
-	font-size: 1.5em;
+    font-size: 1.5em;
     display: inline-block;
-	line-height: 1;
-	max-width: 60%;
+    line-height: 1;
+    max-width: 60%;
 }
 
 .friend
 {
 
-	z-index: 2;
+    z-index: 2;
     float: right;
-	padding-right: 7px;
+    padding-right: 7px;
 }
 
 .icon

@@ -111,6 +111,16 @@ class User extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
+    
+    public function isFriend(User $other){
+        $friends = $this->userFriends1;
+        foreach($friends as $friend){
+            if($friend->friendId == $other->id){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public function getUnavailability() {
         $unavailability = array();

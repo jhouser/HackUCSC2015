@@ -15,7 +15,7 @@ class SiteController extends Controller {
                 'users' => array('*'),
             ),
             array('allow',
-                'actions' => array('index', 'calendarSync', 'page', 'logout', 'invite'),
+                'actions' => array('index', 'calendarSync', 'page', 'logout', 'invite', 'addFriend'),
                 'users' => array('@'),
             ),
             array('deny',
@@ -51,18 +51,20 @@ class SiteController extends Controller {
 
         $this->render('results', array('dataProvider' => $dataProvider));
     }
-	
-	public function actionInvite() {
-		//renders the invite page
-		$dataProvider = new CActiveDataProvider('User', [
+
+    public function actionInvite() {
+        //renders the invite page
+        $dataProvider = new CActiveDataProvider('User', [
+            'criteria' => [
+                'condition' => 'id<>' . Yii::app()->user->id,
+            ],
             'pagination' => [
                 'pageSize' => 10,
             ],
         ]);
-		
+
         $this->render('invite', array('dataProvider' => $dataProvider));
-		
-	}
+    }
 
     public function actionCalendarSync() {
         if (isset(Yii::app()->session['access_token'])) {
@@ -95,7 +97,7 @@ class SiteController extends Controller {
                             $userEvent->eventId = $eventModel->id;
                             $userEvent->save();
                         }
-                    }elseif($event['summary']!='Hackathon!'){
+                    } elseif ($event['summary'] != 'Hackathon!') {
                         printR($event);
                     }
                 }
@@ -146,6 +148,23 @@ class SiteController extends Controller {
         $this->render('contact', array('model' => $model));
     }
 
+    public function actionAddFriend($friendId) {
+        $other = User::model()->findByPk($friendId);
+        if (isset($other) && !Yii::app()->user->isFriend($other)) {
+            $userFriend1 = new UserFriend();
+            $userFriend1->userId = Yii::app()->user->id;
+            $userFriend1->friendId = $friendId;
+            $userFriend2 = new UserFriend();
+            $userFriend2->friendId = Yii::app()->user->id;
+            $userFriend2->userId = $friendId;
+            if ($userFriend1->save() && $userFriend2->save()) {
+                echo 1;
+            } else {
+                echo 0;
+            }
+        }
+    }
+
     /**
      * Displays the login page
      */
@@ -179,7 +198,7 @@ class SiteController extends Controller {
             $identity = new UserIdentity($email, '');
             Yii::app()->user->login($identity);
             $user->syncCalendar();
-            echo $newUser?$this->createUrl('site/calendarSync'):Yii::app()->user->returnUrl;
+            echo $newUser ? $this->createUrl('site/calendarSync') : Yii::app()->user->returnUrl;
         } else {
             // display the login form
             $this->render('login');
