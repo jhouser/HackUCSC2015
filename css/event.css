@@ -26,10 +26,13 @@ body
     margin-bottom:5px;
 }
 
+.event-content{
+    margin-top:10px;
+}
+
 .text
 {
     display: inline-block;
-    width: 30%;
 }
 
 .friend
@@ -41,6 +44,7 @@ body
 .icon
 {
     display: inline-block;
-    padding-right: 10px;
+    float:left;
+    padding: 10px;
 }
 

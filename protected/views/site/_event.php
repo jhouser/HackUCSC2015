@@ -19,23 +19,29 @@
         }
     }
     ?>
+
     <div class="icon">
         <?php
         $imgPath = "images/" . $data->type->type . ".gif";
         echo CHtml::image($imgPath);
         ?>
     </div>
-    <div class="text">
-        <h2><?php echo $data->title; ?></h1>
+    <div class="event-content">
+        <div class="title">
+            <h2><?php echo $data->title; ?></h2>
+        </div>
+        <div class="text">
+
             <p><?php echo $data->description; ?></p>
             <p><?php echo $start . " - " . $end; ?></p>
-    </div>
-    <div class="friend">
-        <div>
-            <?php echo $counter . " : Friends can attend" ?>
         </div>
-        <div>
-            <?php echo $imgString; ?>
+        <div class="friend">
+            <div>
+                <?php echo $counter . " : Friends can attend" ?>
+            </div>
+            <div>
+                <?php echo $imgString; ?>
+            </div>
         </div>
     </div>
 
