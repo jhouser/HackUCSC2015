@@ -28,14 +28,14 @@
     </div>
     <div class="event-content">
         <div class="title">
-            <h2><?php echo $data->title; ?></h2>
+            <h1><b><?php echo $data->title; ?></b></h1>
         </div>
         <div class="text">
 
             <p><?php echo $data->description; ?></p>
-            <p><?php echo $start . " - " . $end; ?></p>
+            
         </div>
-        <div class="friend">
+		<div class="friend">
             <div>
                 <?php echo $counter . " : Friends can attend" ?>
             </div>
@@ -43,6 +43,10 @@
                 <?php echo $imgString; ?>
             </div>
         </div>
+		<div class="time">
+			<p><i><?php echo $start . " - " . $end; ?></i></p>
+		</div>
+        
     </div>
 
 </div>
