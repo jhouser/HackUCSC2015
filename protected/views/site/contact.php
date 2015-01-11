@@ -28,10 +28,10 @@ $this->breadcrumbs=array(
 
 <dialog id="dialog">
   <h1>Invite Friends to HopScotch!</h1>
-  <p><label>Invite friend: </label> <input type = "text" id = "myText" value = "email..." /></p>
-  <p><label>Invite friend: </label> <input type = "text" id = "myText" value = "email..." /></p>
-  <p><label>Invite friend: </label> <input type = "text" id = "myText" value = "email..." /></p>
-  <p><label>Invite friend: </label> <input type = "text" id = "myText" value = "email..." /></p>
+  <p><label>Invite friend: </label> <input type = "text" id = "inv1" value = "email..." /></p>
+  <p><label>Invite friend: </label> <input type = "text" id = "inv2" value = "email..." /></p>
+  <p><label>Invite friend: </label> <input type = "text" id = "inv3" value = "email..." /></p>
+  <p><label>Invite friend: </label> <input type = "text" id = "inv4" value = "email..." /></p>
   <div>
   <button id="cancel">Cancel</button>
   <button id="okay">Invite!</button>
@@ -45,12 +45,22 @@ var dialog = document.getElementById('dialog');
 var okay = document.getElementById("okay");
 var cancel = document.getElementById("cancel");
 
+var inv1 = document.getElementById("inv1");
+var inv2 = document.getElementById("inv2");
+var inv3 = document.getElementById("inv3");
+var inv4 = document.getElementById("inv4");
+
 function showWindow(){
 	dialog.showModal();
-}	
+}
+	
 function closeWindow(){
 	launchbutton.classList.remove("pressed");
-	dialog.close(); 
+	inv1.value = "email..."; //reset the textboxes
+	inv2.value = "email...";
+	inv3.value = "email...";
+	inv4.value = "email...";
+	dialog.close();
 }
 
 launchbutton.onclick = function() {
@@ -62,4 +72,3 @@ okay.onclick = function(){ closeWindow(); }
 cancel.onclick = function(){ closeWindow(); }
 
 </script>
-
