@@ -29,6 +29,18 @@ class SiteController extends Controller {
 
         $this->render('results', array('dataProvider' => $dataProvider));
     }
+	
+	public function actionInvite() {
+		//renders the invite page
+		$dataProvider = new CActiveDataProvider('User', [
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+		
+        $this->render('invite', array('dataProvider' => $dataProvider));
+		
+	}
 
     public function actionCalendarSync() {
         if (isset(Yii::app()->session['access_token'])) {

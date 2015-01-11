@@ -10,11 +10,10 @@ $this->breadcrumbs = array(
 ?>
 
 
-<h1><center>Invite Friends</center></h1>
+<h1>Invite Friends</h1>
 
 <!-- search frieds -->
 <p class= "button"><a href="https://www.facebook.com" class= "buttonfont1">Search</a></p>
-
 
 <!-- or invite new friends! -->
 <p class= "button" id="launch"><a style="cursor:pointer" class= "buttonfont1">Invite</a></p>
@@ -43,21 +42,12 @@ $this->breadcrumbs = array(
     var okay = document.getElementById("okay");
     var cancel = document.getElementById("cancel");
 
-    var inv1 = document.getElementById("inv1");
-    var inv2 = document.getElementById("inv2");
-    var inv3 = document.getElementById("inv3");
-    var inv4 = document.getElementById("inv4");
-
     function showWindow() {
         dialog.showModal();
     }
 
     function closeWindow() {
         launchbutton.classList.remove("pressed");
-        inv1.value = "email..."; //reset the textboxes
-        inv2.value = "email...";
-        inv3.value = "email...";
-        inv4.value = "email...";
         dialog.close();
     }
 
@@ -74,3 +64,8 @@ $this->breadcrumbs = array(
     }
 
 </script>
+
+<?php
+$this -> widget('zii.widgets.CListView', array('dataProvider' => $dataProvider,
+											   'itemView' => '_friends'));
+?>
