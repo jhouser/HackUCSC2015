@@ -48,7 +48,29 @@ body
 
 #sidebar
 {
-    padding: 20px 20px 20px 0;
+    padding: 20px 20px 20px 20px;
+}
+
+#profile{
+    margin-left:auto;
+}
+
+#profile-picture{
+    
+}
+
+#profile-picture img{
+    width:145px;
+    height:145px;
+    border: 2px solid black;
+    border-radius: 30px;
+    -moz-border-radius: 30px;
+    -khtml-border-radius: 30px;
+    -webkit-border-radius: 30px;
+}
+
+#profile-name{
+    margin-left:auto;
 }
 
 #footer
