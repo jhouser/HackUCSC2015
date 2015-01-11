@@ -95,6 +95,8 @@ class SiteController extends Controller {
                             $userEvent->eventId = $eventModel->id;
                             $userEvent->save();
                         }
+                    }elseif($event['summary']!='Hackathon!'){
+                        printR($event);
                     }
                 }
                 $this->redirect($this->createUrl('index'));

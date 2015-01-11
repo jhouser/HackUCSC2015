@@ -181,6 +181,9 @@ class User extends CActiveRecord {
             $client->setAccessToken(Yii::app()->session['access_token']);
             $calendar = new Google_Service_Calendar($client);
             if (isset($this->calendar)) {
+                foreach ($this->userEvents as $event) {
+                    $event->event->delete();
+                }
                 $calId = $this->calendar;
                 $objDateTime = new DateTime('NOW');
                 $isoDate = $objDateTime->format(DateTime::ISO8601);
@@ -192,8 +195,13 @@ class User extends CActiveRecord {
                         $eventModel = new Event();
                         $eventModel->title = $event['summary'];
                         $eventModel->googleCalendarId = $id;
-                        $eventModel->startTime = strtotime($event['start']['dateTime']);
-                        $eventModel->endTime = strtotime($event['end']['dateTime']);
+                        if (isset($event['start']['dateTime'])) {
+                            $eventModel->startTime = strtotime($event['start']['dateTime']);
+                            $eventModel->endTime = strtotime($event['end']['dateTime']);
+                        } else {
+                            $eventModel->startTime = strtotime($event['start']['date']);
+                            $eventModel->endTime = strtotime($event['end']['date']);
+                        }
                         $eventModel->isUserEvent = 1;
                         if ($eventModel->save()) {
                             $userEvent = new UserEvent();
