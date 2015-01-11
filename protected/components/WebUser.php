@@ -4,10 +4,10 @@ class WebUser extends CWebUser {
 
     private $_model;
 
-    public function getModel(){
+    public function getModel() {
         return $this->loadUser($this->getName());
     }
-    
+
     public function getFullName() {
         if (!$this->isGuest) {
             $user = $this->loadUser($this->getName());
@@ -18,8 +18,16 @@ class WebUser extends CWebUser {
     }
 
     public function getId() {
-        $user = $this->loadUser($this->getName());
-        return $user->id;
+        if (!$this->isGuest) {
+            $user = $this->loadUser($this->getName());
+            if (isset($user)) {
+                return $user->id;
+            } else {
+                return parent::getId();
+            }
+        } else {
+            return parent::getId();
+        }
     }
 
     public function getPicture() {
@@ -51,6 +59,10 @@ class WebUser extends CWebUser {
         if ($this->_model === null) {
             if ($email !== null) {
                 $this->_model = User::model()->findByAttributes(array('email' => $email));
+            }
+            if($this->_model === null){
+                $this->logout();
+                Yii::app()->controller->redirect(Yii::app()->controller->createUrl('site/login'));
             }
         }
         return $this->_model;

@@ -139,33 +139,33 @@
             <div id="header">
 
             </div><!-- header -->
+            <div id="body">
+                <div id="mainmenu">
+                    <?php
+                    $this->widget('zii.widgets.CMenu', array(
+                        'items' => array(
+                            array('label' => 'Home', 'url' => array('/site/index')),
+                            array('label' => 'Invite', 'url' => array('/site/invite')),
+                            array('label' => 'Google Sync', 'url' => array('/site/calendarSync')),
+                            array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
+                            array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+                            array('label' => 'Logout (' . Yii::app()->user->fullName . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
+                        ),
+                    ));
+                    ?>
+                </div><!-- mainmenu -->
 
-            <div id="mainmenu">
-                <?php
-                $this->widget('zii.widgets.CMenu', array(
-                    'items' => array(
-                        array('label' => 'Home', 'url' => array('/site/index')),
-                        array('label' => 'Invite', 'url' => array('/site/invite')),
-                        array('label' => 'Google Sync', 'url' => array('/site/calendarSync')),
-                        array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
-                        array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-                        array('label' => 'Logout (' . Yii::app()->user->fullName . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
-                    ),
-                ));
-                ?>
-            </div><!-- mainmenu -->
 
+                <?php echo $content; ?>
 
-            <?php echo $content; ?>
+                <div class="clear"></div>
 
-            <div class="clear"></div>
-
-            <div id="footer">
-                Copyright &copy; <?php echo date('Y'); ?> by HopScotch.<br/>
-                All Rights Reserved.<br/>
-                <?php echo Yii::powered(); ?>
-            </div><!-- footer -->
-
+                <div id="footer">
+                    Copyright &copy; <?php echo date('Y'); ?> by HopScotch.<br/>
+                    All Rights Reserved.<br/>
+                    <?php echo Yii::powered(); ?>
+                </div><!-- footer -->
+            </div>
         </div><!-- page -->
 
     </body>

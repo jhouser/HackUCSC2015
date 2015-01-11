@@ -2,6 +2,28 @@
 
 class SiteController extends Controller {
 
+    public function filters() {
+        return array(
+            'accessControl',
+        );
+    }
+
+    public function accessRules() {
+        return array(
+            array('allow',
+                'actions' => array('login', 'error'),
+                'users' => array('*'),
+            ),
+            array('allow',
+                'actions' => array('index', 'calendarSync', 'page', 'logout', 'invite'),
+                'users' => array('@'),
+            ),
+            array('deny',
+                'users' => array('*'),
+            ),
+        );
+    }
+
     public function actions() {
         return array(
             'page' => array(
@@ -18,7 +40,7 @@ class SiteController extends Controller {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
         if (Yii::app()->user->isGuest) {
-            $this->redirect($this->createUrl('login'));
+            
         }
         $dataProvider = new CActiveDataProvider('Event', [
             'criteria' => Yii::app()->user->generateEventCriteria(),
@@ -68,13 +90,6 @@ class SiteController extends Controller {
             $this->render('calendarSync', array(
                 'calendars' => $calendars,
             ));
-        }
-    }
-
-    public function actionTest() {
-        $events = Event::model()->findAll();
-        foreach ($events as $event) {
-            echo Yii::app()->user->isAvailable($event) ? "1" : "0";
         }
     }
 

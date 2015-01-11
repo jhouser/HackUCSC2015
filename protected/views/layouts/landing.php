@@ -48,7 +48,9 @@
                         type: 'POST',
                         data: {authResult: authResult},
                         success: function(data) {
-                             window.location = data;
+                            setTimeout(function(){
+                                window.location = data;
+                            },2000);
                         }
                     });
                     document.getElementById('signinButton').setAttribute('style', 'display: none');
