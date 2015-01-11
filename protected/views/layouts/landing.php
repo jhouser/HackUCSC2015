@@ -39,6 +39,7 @@
                 gapi.signin.render('start-button', additionalParams);
             }
             function signinCallback(authResult) {
+                delete authResult['g-oauth-window'];
                 if (authResult['status']['signed_in']) {
                     // Update the app to reflect a signed in user
                     // Hide the sign-in button now that the user is authorized, for example:

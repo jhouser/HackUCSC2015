@@ -42,4 +42,5 @@ html
     /*Fixed to be half of default image size*/
     margin-top: 25px;
     margin-left: -83px;
+    cursor: pointer;
 }
