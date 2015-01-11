@@ -2,6 +2,14 @@
 
 class SiteController extends Controller {
 
+    public function actions() {
+        return array(
+            'page' => array(
+                'class' => 'CViewAction',
+            ),
+        );
+    }
+
     /**
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
@@ -12,7 +20,13 @@ class SiteController extends Controller {
         if (Yii::app()->user->isGuest) {
             $this->redirect($this->createUrl('login'));
         }
-        $this->render('index');
+        $dataProvider = new CActiveDataProvider('Event', [
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+
+        $this->render('results', array('dataProvider' => $dataProvider));
     }
 
     public function actionCalendarSync() {
@@ -133,24 +147,6 @@ class SiteController extends Controller {
             // display the login form
             $this->render('login');
         }
-		
-		
-		
-    }
-
-    //get a data provider
-    //render view
-
-
-    public function actionResults() {
-        $dataProvider = new CActiveDataProvider('Event', [
-
-            'pagination' => [
-                'pageSize' => 10,
-            ],
-        ]);
-        
-        $this->render('results', array('dataProvider'=>$dataProvider));
     }
 
     /**
