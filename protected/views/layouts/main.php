@@ -47,25 +47,6 @@
 	color: #ffffff;
 }
 
-.round-button {
-	width:10%;
-}
-.round-button-circle {
-	width: 100%;
-	height:0;
-	padding-bottom: 100%;
-    border-radius: 50%;
-	border:10px solid #cfdcec;
-    overflow:hidden;
-    
-    background: #3b5998;
-	<!--#4679BD;--> 
-    box-shadow: 0 0 3px gray;
-}
-.round-button-circle:hover {
-	background: #FF0000;
-	<!--#30588e;-->
-}
 .round-button a {
     display:block;
 	float:left;
@@ -120,7 +101,11 @@
 		</a>
 	</p>
 	
-	<div class="round-button"><div class="round-button-circle"><a href="https://facebook.com" class="round-button">Facebook</a></div></div>
+	<div class="round-button">
+		<div class="round-button-circle">
+			<a href="https://facebook.com" class="round-button">Facebook</a>
+		</div>
+	</div>
 	
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
