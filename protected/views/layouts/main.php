@@ -1,6 +1,10 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4ceb785c218aba48281488cacb4bd7da57768eff
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="language" content="en">
@@ -13,10 +17,22 @@
 	<![endif]-->
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">
+
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
+<<<<<<< HEAD
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideToggle("slow");
+  });
+});
+</script>
+
+=======
+>>>>>>> 4ceb785c218aba48281488cacb4bd7da57768eff
 <style>	
 .button
 {
@@ -82,11 +98,41 @@
     font-weight:bold;
     text-decoration:none;
 }
+
+
+#panel,#flip
+{
+padding:5px;
+text-align:center;
+background: #3b5998;
+border:solid 10px #cfdcec;
+
+	text-align:center;
+        color:#e2eaf3;
+    font-family:Verdana;
+    font-size:1.2em;
+    font-weight:bold;
+    text-decoration:none;
+
+width: 300px;
+}
+#panel
+{
+padding-top:50px;
+padding-bottom: 50px;
+display:none;
+width: 300px;
+}
 </style>
 	
 	
+<<<<<<< HEAD
+	<!-- google+ sign in button config -->
+	<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+=======
 <!-- google+ sign in button config -->
 <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+>>>>>>> 4ceb785c218aba48281488cacb4bd7da57768eff
 
 	
 </head>
@@ -116,12 +162,19 @@
 	<br></br>
 	<p class= "button">
 		<a href="https://www.facebook.com" class= "buttonfont1">Facebook
-	
 		</a>
 	</p>
 	
 	<div class="round-button"><div class="round-button-circle"><a href="https://facebook.com" class="round-button">Facebook</a></div></div>
 	
+<<<<<<< HEAD
+<div id="flip">Click to Show</div>
+<div id="panel">Hello world!</div>
+
+	
+	
+=======
+>>>>>>> 4ceb785c218aba48281488cacb4bd7da57768eff
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -133,8 +186,15 @@
 	<div class="clear"></div>
 
 	<div id="footer">
+<<<<<<< HEAD
+
 		Copyright &copy; <?php echo date('Y'); ?> by HopScotch.<br/>
 		All Rights Reserved.<br/>
+
+=======
+		Copyright &copy; <?php echo date('Y'); ?> by HopScotch.<br/>
+		All Rights Reserved.<br/>
+>>>>>>> 4ceb785c218aba48281488cacb4bd7da57768eff
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
 
