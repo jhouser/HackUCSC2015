@@ -7,6 +7,10 @@
  * @property integer $id
  * @property integer $userId
  * @property integer $eventId
+ *
+ * The followings are the available model relations:
+ * @property Users $user
+ * @property Events $event
  */
 class UserEvent extends CActiveRecord
 {
@@ -42,6 +46,8 @@ class UserEvent extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user' => array(self::BELONGS_TO, 'User', 'userId'),
+			'event' => array(self::BELONGS_TO, 'Event', 'eventId'),
 		);
 	}
 

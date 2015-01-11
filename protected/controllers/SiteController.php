@@ -72,8 +72,8 @@ class SiteController extends Controller {
         }
     }
     
-    public function actionGetAvailability(){
-        Yii::app()->user->getAvailability();
+    public function actionGetUnavailability(){
+        Yii::app()->user->generateEventQuery();
     }
 
     /**
