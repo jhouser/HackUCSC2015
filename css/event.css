@@ -7,6 +7,14 @@ body
 
 }
 
+.mini-prof-pic{
+    margin-right:4px;
+    border: 1px solid black;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
 
 .text
 {

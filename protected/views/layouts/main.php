@@ -116,6 +116,18 @@
                 width: 300px;
             }
         </style>
+        <script>
+            $(window).scroll(function(e) {
+                $el = $('.fixedElement');
+                if ($(this).scrollTop() > 200 && $el.css('position') != 'fixed') {
+                    $('.fixedElement').css({'position': 'fixed', 'top': '20px'});
+                }
+                if ($(this).scrollTop() < 180 && $el.css('position') == 'fixed')
+                {
+                    $('.fixedElement').css({'position': 'static', 'top': '0px'});
+                }
+            });
+        </script>
 
         <!-- google+ sign in button config -->
         <script src="https://apis.google.com/js/client:platform.js" async defer></script>
@@ -125,7 +137,7 @@
     <body>
         <div class="container" id="page">
             <div id="header">
-                
+
             </div><!-- header -->
 
             <div id="mainmenu">
@@ -134,6 +146,7 @@
                     'items' => array(
                         array('label' => 'Home', 'url' => array('/site/index')),
                         array('label' => 'Invite', 'url' => array('/site/invite')),
+                        array('label' => 'Google Sync', 'url' => array('/site/calendarSync')),
                         array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
                         array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                         array('label' => 'Logout (' . Yii::app()->user->fullName . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
@@ -141,13 +154,7 @@
                 ));
                 ?>
             </div><!-- mainmenu -->
-            <?php if (isset($this->breadcrumbs)): ?>
-                <?php
-                $this->widget('zii.widgets.CBreadcrumbs', array(
-                    'links' => $this->breadcrumbs,
-                ));
-                ?><!-- breadcrumbs -->
-            <?php endif ?>
+
 
             <?php echo $content; ?>
 

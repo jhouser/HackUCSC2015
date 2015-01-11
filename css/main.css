@@ -52,11 +52,11 @@ body
 }
 
 #profile{
-    margin-left:auto;
+         
 }
 
 #profile-picture{
-    
+
 }
 
 #profile-picture img{
@@ -70,7 +70,7 @@ body
 }
 
 #profile-name{
-    margin-left:auto;
+    text-align: center;
 }
 
 #footer

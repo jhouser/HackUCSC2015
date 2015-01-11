@@ -2,13 +2,13 @@
 <?php $this->beginContent('//layouts/main'); ?>
 <div class="span-5">
     <div id="sidebar">
-        <div id ="profile">
+        <div id ="profile" class="fixedElement">
             <div id="profile-picture">
                 <?php echo CHtml::image(Yii::app()->user->picture); ?>
             </div>
-            <span id="profile-name">
-                <?php echo Yii::app()->user->fullName; ?>
-            </span>
+            <div id="profile-name">
+                <h2><?php echo Yii::app()->user->fullName; ?></h2>
+            </div>
         </div>
     </div><!-- sidebar -->
 </div>

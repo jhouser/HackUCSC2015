@@ -21,6 +21,7 @@ class SiteController extends Controller {
             $this->redirect($this->createUrl('login'));
         }
         $dataProvider = new CActiveDataProvider('Event', [
+            'criteria' => Yii::app()->user->generateEventCriteria(),
             'pagination' => [
                 'pageSize' => 10,
             ],
