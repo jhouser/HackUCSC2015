@@ -5,8 +5,9 @@
     <div class="friend-content">
         <?php
         echo CHtml::tag('div', array(
+            'id' => $data->id . '-add-button',
             'class' => Yii::app()->user->isFriend($data) ? 'is-friend-button' : 'friend-add-button'
-        ),'');
+                ), '');
         ?>
         <div class="friend-icon">
             <?php
@@ -16,10 +17,27 @@
             ?>
         </div>
         <div class="friend-text">
-<?php echo $data->fullName; ?>
+            <?php echo $data->fullName; ?>
         </div>
     </div>
 
 </div>
-
-
+<?php
+if (!Yii::app()->user->isFriend($data)) {
+    Yii::app()->clientScript->registerScript($data->id . '-add-friend', '
+        $("#' . $data->id . '-add-button").on("click",function(){
+            $.ajax({
+                url: "' . $this->createUrl('site/addFriend') . '",
+                data: {"friendId": "' . $data->id . '"},
+                success:function(data){
+                    if(data){
+                        $("#' . $data->id . '-add-button").removeClass("friend-add-button");
+                        $("#' . $data->id . '-add-button").addClass("is-friend-button");
+                        $("#' . $data->id . '-add-button").unbind("click");
+                    }
+                }
+            });
+        });
+', CClientScript::POS_END);
+}
+?>

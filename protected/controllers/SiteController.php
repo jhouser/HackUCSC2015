@@ -149,13 +149,19 @@ class SiteController extends Controller {
     }
 
     public function actionAddFriend($friendId) {
-        $userFriend = new UserFriend();
-        $userFriend->userId = Yii::app()->user->id;
-        $userFriend->friendId = $friendId;
-        if ($userFriend->save()) {
-            echo 1;
-        } else {
-            echo 0;
+        $other = User::model()->findByPk($friendId);
+        if (isset($other) && !Yii::app()->user->isFriend($other)) {
+            $userFriend1 = new UserFriend();
+            $userFriend1->userId = Yii::app()->user->id;
+            $userFriend1->friendId = $friendId;
+            $userFriend2 = new UserFriend();
+            $userFriend2->friendId = Yii::app()->user->id;
+            $userFriend2->userId = $friendId;
+            if ($userFriend1->save() && $userFriend2->save()) {
+                echo 1;
+            } else {
+                echo 0;
+            }
         }
     }
 

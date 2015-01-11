@@ -62,7 +62,7 @@ body
 }
 
 .is-friend-button{
-    background-image: url("../images/add_button.png");
+    background-image: url("../images/checkmark.png");
     background-size: cover;
     display:inline-block;
     float:left;
